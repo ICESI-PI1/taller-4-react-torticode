@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping("/author")
+@RequestMapping("/autores")
 public class AuthorController {
 
     private final IAuthorService authorService;
@@ -40,29 +40,29 @@ public class AuthorController {
         bookService.saveBook(book3);
         bookService.saveBook(book4);
     }
-    @GetMapping("/autores")
+    @GetMapping("")
     public List<Author> showAllAuthor(){
         return authorService.getAllAuthors();
     }
-    @GetMapping("/autores/{id}")
+    @GetMapping("/{id}")
     public Author showAuthor(@PathVariable Long id, Model model){
         return authorService.findById(id).orElse(null);
     }
-    @PostMapping("/autores")
+    @PostMapping("")
     public Author createAuthor(@RequestBody Author newAuthor){
         return authorService.saveAuthor(newAuthor);
     }
 
-    @PutMapping("/autores/{id}")
-    public Boolean uploadAuthor(@PathVariable Long id, Author uploadAuthor){
+    @PutMapping("/{id}")
+    public Boolean uploadAuthor(@PathVariable Long id, @RequestBody Author uploadAuthor){
         return authorService.uploadAuthor(id, uploadAuthor);
     }
-    @DeleteMapping("/autores/{id}")
+    @DeleteMapping("/{id}")
     public Boolean deleteAuthor(@PathVariable Long id){
         return authorService.deleteAuthor(id);
     }
 
-    @GetMapping("/autores/{idAuthor}/libros")
+    @GetMapping("/{idAuthor}/libros")
     public List<Book> showBooksByAuthor(@PathVariable Long idAuthor){
         System.out.println(bookService.getBooksbyAuthor(idAuthor));
         return bookService.getBooksbyAuthor(idAuthor);

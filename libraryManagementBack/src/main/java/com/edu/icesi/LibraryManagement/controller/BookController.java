@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/book")
+@RequestMapping("/libros")
 public class BookController {
 
     private final IBookService bookService;
@@ -17,25 +17,25 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @GetMapping("/libros")
+    @GetMapping("")
     public List<Book> showAllBooks(){
         return bookService.getAllBooks();
     }
 
-    @GetMapping("/libros/{id}")
+    @GetMapping("/{id}")
     public Book showBook(@PathVariable Long id, Model model){
         return bookService.findById(id).orElse(null);
     }
-    @PostMapping("/libros")
+    @PostMapping("")
     public Book createAuthor(@RequestBody Book newBook){
         return bookService.saveBook(newBook);
     }
-    @PutMapping("/libros/{id}")
-    public Boolean uploadBook(@PathVariable Long id, Book uploadBook){
+    @PutMapping("/{id}")
+    public Boolean uploadBook(@PathVariable Long id, @RequestBody Book uploadBook){
         return bookService.uploadBook(id,uploadBook);
     }
 
-    @DeleteMapping("/libros/{id}")
+    @DeleteMapping("/{id}")
     public Boolean deleteBook(@PathVariable Long id){
         return bookService.deleteBook(id);
     }
