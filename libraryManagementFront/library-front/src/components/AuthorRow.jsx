@@ -4,7 +4,7 @@ import { TableRow, TableCell, Button } from '@mui/material';
 function AuthorRow({ author, delAuthor, editAuthor }) {
   const handleDelete = () => {
     delAuthor(author.id);
-  };
+  }
 
   return (
     <TableRow key={author.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -18,7 +18,7 @@ function AuthorRow({ author, delAuthor, editAuthor }) {
         <Button variant="contained" color="success" onClick={() => { editAuthor(author); }}>Edit</Button>
       </TableCell>
     </TableRow>
-  );
+  )
 }
 
 AuthorRow.propTypes = {

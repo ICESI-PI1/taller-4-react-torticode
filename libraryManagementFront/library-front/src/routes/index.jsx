@@ -1,17 +1,31 @@
-import {Route, Routes, BrowserRouter  } from  'react-router-dom';
-import AuthorList from '../pages/AuthorList'; // Componente para listar todos los autores
-//import AuthorDetail from '../pages/AuthorDetail'; // Componente para mostrar detalles de un autor
-//import AuthorCreate from '../pages/AuthorCreate'; // Componente para crear un nuevo autor
-//import AuthorUpdate from '../pages/AuthorUpdate'; // Componente para actualizar un autor
-//import AuthorBooks from '../pages/AuthorBooks'; // Componente para listar los libros de un autor
-//import NotFound from '../pages/NotFound';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import Home from "../pages/Home";
+import LoginForm from "../components/LoginForm";
+import AuthorList from '../pages/AuthorList';
+import NotFound from '../pages/NotFound';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const  Router = () => (
-    <BrowserRouter>
+function isToken(){
+    const token = localStorage.getItem('token')
+    console.log(token)
+    return token !== null
+}
+
+const ProtectedRoute = ({ element }) => {
+    return isToken() ? element : <Navigate to="/login" />;
+};
+
+const AppRouter = () => (
+    <Router>
         <Routes>
-            <Route path="/autores" element={<AuthorList />} /> // Ruta para listar todos los autores
+            <Route path="/login" element={<LoginForm />}/>
+            <Route path="/autores" element={<AuthorList />} />
+            <Route path="/home" element={<ProtectedRoute element={<Home />} />} />
+            <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
-    </BrowserRouter>
+        <ToastContainer/>
+    </Router>
 )
 
-export default Router;
+export default AppRouter;

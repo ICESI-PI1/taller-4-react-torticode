@@ -3,7 +3,7 @@ import axios from  '../config/axios'
 import AuthorTable from '../components/AuthorTable' // Asume que tienes un componente AuthorTable
 import AuthorForm from '../components/AuthorForm' // Asume que tienes un componente AuthorForm
 import PropTypes from 'prop-types'
-//import { AuthorContext } from '../context/AuthorContext' // Asume que tienes un contexto AuthorContext
+import { AuthorContext } from '../context/AuthorContext' // Asume que tienes un contexto AuthorContext
 
 function AuthorList({owner}) {
 
@@ -13,6 +13,7 @@ function AuthorList({owner}) {
   const getAuthors = async () => {
     try {
        const res = await axios.get("/autores")
+       console.log(res.data)
        setAuthorList(res.data)
     }catch(e){
       console.log(e)
@@ -65,4 +66,4 @@ AuthorList.propTypes = {
   owner: PropTypes.string
 }
 
-export default AuthorList
+export default AuthorList;

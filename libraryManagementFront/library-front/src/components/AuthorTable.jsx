@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import AuthorRow from './AuthorRow';
 //import { obtenerAutores } from './api'; // Asegúrate de importar la función de la API
 
-function ListAuthorsComponent({authors, delAuthor, editAuthor }) {
+function AuthorTable ({authors, delAuthor, editAuthor }) {
 
 
   const renderAuthors = () => {
@@ -32,10 +32,10 @@ function ListAuthorsComponent({authors, delAuthor, editAuthor }) {
   );
 }
 
-ListAuthorsComponent.propTypes = {
+AuthorTable.propTypes = {
   authors : PropTypes.array, 
   delAuthor: PropTypes.func,
   editAuthor: PropTypes.func
 };
 
-export default ListAuthorsComponent;
+export default AuthorTable;
