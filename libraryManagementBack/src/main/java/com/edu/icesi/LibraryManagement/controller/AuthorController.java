@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:5175/")
+@CrossOrigin(origins = "http://localhost:5175")
 @RequestMapping("/autores")
 public class AuthorController {
 

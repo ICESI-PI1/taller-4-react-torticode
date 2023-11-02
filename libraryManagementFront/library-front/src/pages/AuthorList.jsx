@@ -55,7 +55,7 @@ function AuthorList({owner}) {
 
   return (
     <AuthorContext.Provider value={{authorEdit, setAuthorEdit}}>
-      {owner}s AuthorList
+      <h1>Authors Management</h1>
       <AuthorForm addAuthor={addAuthor} authorEdit={authorEdit}/>
       <AuthorTable authorList={authorList} delAuthor={delAuthor} editAuthor={setAuthorEdit}/>
     </AuthorContext.Provider>
@@ -63,7 +63,7 @@ function AuthorList({owner}) {
 }
 
 AuthorList.propTypes = {
-  owner: PropTypes.string
+ 
 }
 
 export default AuthorList;

@@ -4,9 +4,13 @@ import AuthorList from "./AuthorList"
 
 function Home() {
     return (
-        <>
-      <LoginForm/> 
-      </>   )
+        <div>
+            <AuthorList />
+        </div>
+        
+       
+        
+    )
   }
   
   export default Home

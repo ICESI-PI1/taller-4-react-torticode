@@ -8,13 +8,16 @@ function AuthorTable ({authors, delAuthor, editAuthor }) {
 
 
   const renderAuthors = () => {
+    if (!authors) { // Si no hay autores, muestra un mensaje de "cargando"
+      return <div>Loading...</div>;
+    }
     return authors.map((author) => (
       <AuthorRow key={author.id} author={author} delAuthor={delAuthor} editAuthor={editAuthor} />
     ));
   };
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={ authors }>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>

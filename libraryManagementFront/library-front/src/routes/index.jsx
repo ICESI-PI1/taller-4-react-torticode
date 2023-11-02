@@ -21,8 +21,8 @@ const AppRouter = () => (
         <Routes>
             <Route path="/login" element={<LoginForm />}/>
             <Route path="/autores" element={<AuthorList />} />
-            <Route path="/home" element={<ProtectedRoute element={<Home />} />} />
-            <Route path="*" element={<Navigate to="/login" />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/*" element={<Navigate to="/login" />} />
         </Routes>
         <ToastContainer/>
     </Router>
