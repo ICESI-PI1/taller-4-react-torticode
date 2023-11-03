@@ -9,7 +9,7 @@ public class LibraryManagementApplication {
 	public static void main(String[] args) {
 
 		SpringApplication.run(LibraryManagementApplication.class, args);
-		System.out.println("Hola mundo");
+		System.out.println("Server iniciado");
 	}
 
 }

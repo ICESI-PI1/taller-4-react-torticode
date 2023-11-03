@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5175")
 @RequestMapping("/autores")
 public class AuthorController {
 
@@ -40,14 +41,17 @@ public class AuthorController {
         bookService.saveBook(book3);
         bookService.saveBook(book4);
     }
+    @CrossOrigin(origins = "*")
     @GetMapping("")
     public List<Author> showAllAuthor(){
         return authorService.getAllAuthors();
     }
+    @CrossOrigin(origins = "*")
     @GetMapping("/{id}")
     public Author showAuthor(@PathVariable Long id, Model model){
         return authorService.findById(id).orElse(null);
     }
+    @CrossOrigin(origins = "*")
     @PostMapping("")
     public Author createAuthor(@RequestBody Author newAuthor){
         return authorService.saveAuthor(newAuthor);

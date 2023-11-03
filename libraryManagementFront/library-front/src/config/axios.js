@@ -1,6 +1,8 @@
 import axios from 'axios'
 
-//Debo agregar la ruta en la que se ejecuta la API-Rest
-const instance = axios.create()
+const instance = axios.create({baseURL: 'http://localhost:8080/ic_rest_interfaces_test/api'})
+
+localStorage.getItem('token') && (instance.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token'))
+
 
 export default instance
