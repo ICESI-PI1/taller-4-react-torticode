@@ -1,9 +1,9 @@
 import {useEffect, useState} from 'react'
 import axios from  '../config/axios'
-import AuthorTable from '../components/AuthorTable' // Asume que tienes un componente AuthorTable
-import AuthorForm from '../components/AuthorForm' // Asume que tienes un componente AuthorForm
+import AuthorTable from '../components/AuthorTable' 
+import AuthorForm from '../components/AuthorForm' 
 import PropTypes from 'prop-types'
-import { AuthorContext } from '../context/AuthorContext' // Asume que tienes un contexto AuthorContext
+import { AuthorContext } from '../context/AuthorContext' 
 
 function AuthorList({owner}) {
 
@@ -12,9 +12,23 @@ function AuthorList({owner}) {
 
   const getAuthors = async () => {
     try {
-       const res = await axios.get("/autores")
+       /* const res = await axios.get("/autores")
        console.log(res.data)
-       setAuthorList(res.data)
+       setAuthorList(res.data) */
+       let url = "http://localhost:8080/ic_rest_interfaces_test/api"
+       let config = {
+        method: "GET",
+        mode: "no-cors",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": 'Bearer ' + localStorage.getItem('token')
+        },
+    
+
+    }
+       let response = await fetch(url,config)
+       let res = await response.json()
+       console.log(res)
     }catch(e){
       console.log(e)
     }
