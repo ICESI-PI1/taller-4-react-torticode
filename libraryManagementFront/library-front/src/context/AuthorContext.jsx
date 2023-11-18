@@ -1,4 +1,11 @@
+import React from 'react'
 
-import { createContext } from "react";
+function AuthorContext() {
+  return (
+    <div>
+      
+    </div>
+  )
+}
 
-export const AuthorContext  = createContext("")
+export default AuthorContext

@@ -4,20 +4,21 @@ import PropTypes from 'prop-types';
 import AuthorRow from './AuthorRow';
 //import { obtenerAutores } from './api'; // Asegúrate de importar la función de la API
 
-function AuthorTable ({authors, delAuthor, editAuthor }) {
+function AuthorTable ({authors, delAuthor, editAuthor, showDetails }) {
 
 
   const renderAuthors = () => {
+    console.log("authors",authors)
     if (!authors) { // Si no hay autores, muestra un mensaje de "cargando"
       return <div>Loading...</div>;
     }
     return authors.map((author) => (
-      <AuthorRow key={author.id} author={author} delAuthor={delAuthor} editAuthor={editAuthor} />
+      <AuthorRow key={author.id} author={author} delAuthor={delAuthor} editAuthor={editAuthor} showDetails={showDetails} />
     ));
   };
 
   return (
-    <TableContainer component={ authors }>
+    <TableContainer>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -38,7 +39,8 @@ function AuthorTable ({authors, delAuthor, editAuthor }) {
 AuthorTable.propTypes = {
   authors : PropTypes.array, 
   delAuthor: PropTypes.func,
-  editAuthor: PropTypes.func
+  editAuthor: PropTypes.func,
+  showDetails : PropTypes.func
 };
 
 export default AuthorTable;

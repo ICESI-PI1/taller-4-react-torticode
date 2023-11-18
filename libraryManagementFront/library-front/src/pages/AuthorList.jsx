@@ -2,35 +2,22 @@ import {useEffect, useState} from 'react'
 import axios from  '../config/axios'
 import AuthorTable from '../components/AuthorTable' 
 import AuthorForm from '../components/AuthorForm' 
-import PropTypes from 'prop-types'
-import { AuthorContext } from '../context/AuthorContext' 
 
-function AuthorList({owner}) {
+function AuthorList({}) {
 
   const [authorList, setAuthorList] = useState([])
   const [authorEdit, setAuthorEdit] = useState({id:"", name:"", books: []})
+  const [authorDetails, setAuthorDetails] = useState(null);
 
   const getAuthors = async () => {
     try {
-       /* const res = await axios.get("/autores")
+       const res = await axios.get("/autores")
+       setAuthorList(res.data)
        console.log(res.data)
-       setAuthorList(res.data) */
-       let url = "http://localhost:8080/ic_rest_interfaces_test/api"
-       let config = {
-        method: "GET",
-        mode: "no-cors",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": 'Bearer ' + localStorage.getItem('token')
-        },
-    
-
-    }
-       let response = await fetch(url,config)
-       let res = await response.json()
-       console.log(res)
+       
     }catch(e){
       console.log(e)
+ 
     }
   }
 
@@ -42,7 +29,7 @@ function AuthorList({owner}) {
       try{
         const res = await axios.post("/autores", author)
         if(res.status==201)
-          getAuthors()
+        setAuthorList((prevAuthors) => [...prevAuthors, author]);
       }catch (e){
         console.log(e)
       }
@@ -50,7 +37,7 @@ function AuthorList({owner}) {
       try{
         const res = await axios.put("/autores/"+author.id, author)
         if(res.status==200)
-          getAuthors()
+        getAuthors()
       }catch (e){
         console.log(e)
       }
@@ -67,17 +54,33 @@ function AuthorList({owner}) {
     }
   }
 
+  const showDetails = async (id) => {
+    try {
+      const res = await axios.get("/autores/" + id);
+      setAuthorDetails(res.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+
+
   return (
-    <AuthorContext.Provider value={{authorEdit, setAuthorEdit}}>
-      <h1>Authors Management</h1>
-      <AuthorForm addAuthor={addAuthor} authorEdit={authorEdit}/>
-      <AuthorTable authorList={authorList} delAuthor={delAuthor} editAuthor={setAuthorEdit}/>
-    </AuthorContext.Provider>
+    <>
+    <h1>Authors Management</h1>
+    <AuthorForm addAuthor={addAuthor} authorEdit={authorEdit} setAuthorEdit={setAuthorEdit}/>
+    <AuthorTable authors={authorList} delAuthor={delAuthor} editAuthor={setAuthorEdit} showDetails={showDetails} />
+    {authorDetails && (
+      <div>
+        <h2>Author Details</h2>
+        <p>Id: {authorDetails.id}</p>
+        <p>Name: {authorDetails.name}</p>
+        <p>Nationality: {authorDetails.nationality}</p>      </div>
+    )}
+  </>
   )
 }
 
-AuthorList.propTypes = {
- 
-}
+
 
 export default AuthorList;
