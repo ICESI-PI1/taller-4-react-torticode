@@ -8,6 +8,7 @@ function AuthorList({}) {
   const [authorList, setAuthorList] = useState([])
   const [authorEdit, setAuthorEdit] = useState({id:"", name:"", books: []})
   const [authorDetails, setAuthorDetails] = useState(null);
+  const [authorBooks, setAuthorBooks] = useState([null])
 
   const getAuthors = async () => {
     try {
@@ -63,6 +64,14 @@ function AuthorList({}) {
     }
   };
 
+  const showBooksByAuthor = async (id) => {
+    try {
+      const res = await axios.get("/autores/" + id + "/libros");
+      setAuthorBooks(res.data);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
 
   return (
