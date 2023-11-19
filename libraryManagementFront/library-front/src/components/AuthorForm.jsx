@@ -3,18 +3,23 @@ import PropTypes from 'prop-types';
 import { Box, Button, TextField } from '@mui/material';
 
 function AuthorForm({ addAuthor, authorEdit }) {
-  const [id, setId] = useState('');
-  const [name, setName] = useState('');
-  const [nationality, setNationality] = useState('');
+  const [id, setId] = useState("");
+  const [name, setName] = useState("");
+  const [nationality, setNationality] = useState("");
 
   useEffect(() => {
-    setId(authorEdit.id);
-    setName(authorEdit.name);
-    setNationality(authorEdit.nationality);
+    if (authorEdit) {
+      setId(authorEdit.id || "");
+      setName(authorEdit.name || "");
+      setNationality(authorEdit.nationality || "");
+    }
   }, [authorEdit]);
 
   const handleClick = () => {
     addAuthor({ id, name, nationality });
+    setId("");
+    setName("");
+    setNationality("");
   };
 
   return (
