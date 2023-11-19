@@ -47,6 +47,11 @@ function BookForm({addBook, bookEdit}) {
     const author = authors.find((author) => author.id == selectAuthor)
     const book = {id, title, publicationDate, author}
     addBook(book) 
+    console.log(book)
+    setId('')
+    setTitle('')
+    setPublicationDate('')
+    setSelectAuthor('')  
   }
 
   return (
@@ -66,7 +71,7 @@ function BookForm({addBook, bookEdit}) {
 }
 
 BookForm.propTypes = {
-  addAuthor: PropTypes.func
+  addAuthor: PropTypes.func,
 }
 
 export default BookForm;

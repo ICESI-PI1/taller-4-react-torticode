@@ -49,7 +49,7 @@ export default function BookList({}) {
             if(res.status==200)
             getBooks()
         }catch (e){
-            console.log(e)
+            console.log(e + "No se puede eliminar el libro")
         }
     
     }
