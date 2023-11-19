@@ -26,7 +26,7 @@ public class BookRepositoryImpl implements IBookRepository {
 
     @Override
     public Optional<Book> findById(Long id) {
-        return books.stream().filter(p->p.getId() == id).findFirst();
+        return books.stream().filter(b->b.getId().equals(id)).findFirst();
     }
 
     @Override
@@ -38,6 +38,7 @@ public class BookRepositoryImpl implements IBookRepository {
             books.add(newBook);
         }else{
             books.add(book);
+            System.out.println(book.toString());
         }
         return book;
     }
@@ -60,7 +61,6 @@ public class BookRepositoryImpl implements IBookRepository {
     public Boolean deleteBook(Long id) {
         boolean flag = false;
         Book book = findById(id).orElse(null);
-
         if(book!=null){
             books.remove(book);
             flag = true;

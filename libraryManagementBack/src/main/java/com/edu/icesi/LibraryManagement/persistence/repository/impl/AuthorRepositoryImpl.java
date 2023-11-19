@@ -23,7 +23,7 @@ public class AuthorRepositoryImpl implements IAuthorRepository {
 
     @Override
     public Optional<Author> findById(Long id) {
-        return authors.stream().filter(b->b.getId().equals (id)).findFirst();
+        return authors.stream().filter(b->b.getId().equals(id)).findFirst();
     }
 
     @Override
