@@ -6,10 +6,12 @@ import BookRow from './BookRow';
 function BookTable({bookList, delBook, showDetails, setBookEdit}) {
 
   const renderBooks = () => {
+    if(!bookList){
+      return <div>Loading...</div>;
+    }
     return bookList.map((book) => 
-      (<BookRow key={book.id} book={book} delBook={delBook} showDetails={showDetails} setBookEdit={setBookEdit}/>))
-
-  }
+      (<BookRow key={book.id} book={book} delBook={delBook} showDetails={showDetails} setBookEdit={setBookEdit}/>));
+  };
 
   return (
     <TableContainer component={Paper}>

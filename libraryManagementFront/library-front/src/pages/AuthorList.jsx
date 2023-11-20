@@ -31,6 +31,7 @@ function AuthorList({}) {
         const res = await axios.post("/autores", author)
         if(res.status==201)
         setAuthorList((prevAuthors) => [...prevAuthors, author]);
+        getAuthors()
       }catch (e){
         console.log(e)
       }

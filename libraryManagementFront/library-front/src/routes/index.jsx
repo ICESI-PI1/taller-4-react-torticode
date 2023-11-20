@@ -10,6 +10,7 @@ import AboutParams from '../pages/AboutParams';
 import AboutOtra from '../pages/AboutOtra';
 import AuthorDetails from '../components/AuthorDetails';
 import BookList from '../pages/BookList';
+import BookDetails from '../components/BookDetails';
 
 function isToken(){
     const tok = localStorage.getItem('token')
@@ -60,12 +61,13 @@ const RoutesApp = () => {
                 <ProtectedRoute 
                   element={
                     <Routes>
-                      <Route path="/" element={<BookList />}/>
+                      <Route path="" element={<BookList />}/>
                     </Routes>
                   }
                 />
               }
             />
+            <Route path="/libros/:id" Component={BookDetails} />
           </Routes>
         </Router>
       );

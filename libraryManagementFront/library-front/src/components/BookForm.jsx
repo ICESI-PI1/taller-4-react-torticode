@@ -16,11 +16,11 @@ function BookForm({addBook, bookEdit}) {
   
 
   useEffect(() => {
+    renderAuthors();
     setId(bookEdit.id || '');
     setTitle(bookEdit.title || '');
     setPublicationDate(bookEdit.publicationDate || '');
     setSelectAuthor(bookEdit.author ? bookEdit.author.id : '')
-    renderAuthors();
   },[bookEdit])
 
   

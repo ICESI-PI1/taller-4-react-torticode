@@ -29,6 +29,7 @@ export default function BookList({}) {
                 const res = await axios.post("/libros", book)
                 if(res.status==201)
                 setBookList((prevBooks) => [...prevBooks, book]);
+                getBooks()
             }catch (e){
                 console.log(e + "Error al agregar libro")
             }
@@ -57,6 +58,7 @@ export default function BookList({}) {
         try {
             const res = await axios.get("/libros/" + id);
             setBookDetails(res.data);
+            return res.data;
         }catch (e){
             console.log(e)
         }
@@ -64,10 +66,9 @@ export default function BookList({}) {
 
   return (
     <>
-        <h1>Libros</h1>
-        <BookTable bookList={bookList} delBook={delBook} showDetails={showDetails} setBookEdit={setBookEdit}/>
+        <h1>Books Management</h1>
         <BookForm addBook={addBook} bookEdit={bookEdit} />
-
+        <BookTable bookList={bookList} delBook={delBook} showDetails={showDetails} setBookEdit={setBookEdit}/>
     </>
   )
 }

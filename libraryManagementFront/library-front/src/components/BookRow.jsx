@@ -2,12 +2,16 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import { TableRow, TableCell, Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 function BookRow({book, delBook, editBook, showDetails}) {
 
     const handleDelete = () => {
         delBook(book.id);
     }
+    const handleDetails = () => {
+        showDetails(book.id);
+    }  
 
   return (
     <TableRow key={book.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -20,7 +24,9 @@ function BookRow({book, delBook, editBook, showDetails}) {
         <TableCell align="left">
             <Button variant="contained" color="error" onClick={handleDelete}>Delete</Button>&nbsp;
             <Button variant="contained" color="success" onClick={() => { editBook(book); }}>Edit</Button>
-            <Button variant="contained" color="primary" onClick={() => { showDetails(book.id); }}>Detalles</Button>
+            <Link to={"/libros/" + book.id}>
+                <Button variant="contained" color="primary" onClick={handleDetails}>Details</Button>
+            </Link>        
         </TableCell>
     </TableRow>)
 }
